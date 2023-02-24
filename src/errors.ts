@@ -12,7 +12,7 @@ class appError extends Error {
   }
 }
 
-const handleErrors = (error: Error, request: Request, response: Response) => {
+const handleErrors = (error: any, request: Request, response: Response, _: NextFunction) => {
   if (error instanceof appError) {
     return response.status(error.statusCode).json({ message: error.message });
   }
