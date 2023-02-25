@@ -6,7 +6,7 @@ import {
   movieSchemaArray,
   returnMovieSchema,
   updateMovieSchema,
-} from "../schemas/movies.schema";
+} from "../schemas";
 
 type iMovieCreate = z.infer<typeof movieCreateSchema>;
 type iMovieUpdate = DeepPartial<Movie>;

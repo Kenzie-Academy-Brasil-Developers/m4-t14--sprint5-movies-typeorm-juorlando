@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
-import { iMoviesReturn } from "../interface/movies.interface";
+import { iMoviesReturn } from "../interfaces/movies.interface";
 import { movieSchemaArray } from "../schemas/movies.schema";
 
 const listMovieService = async (): Promise<iMoviesReturn> => {

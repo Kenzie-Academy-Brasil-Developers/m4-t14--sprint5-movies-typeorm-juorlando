@@ -18,7 +18,7 @@ const ensureName = async (
   });
 
   if (findMovie) {
-    throw new appError("Movie already exists", 409);
+    throw new appError("Movie already exists.", 409);
   }
 
   return next();
