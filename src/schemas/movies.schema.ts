@@ -1,14 +1,18 @@
 import { z } from "zod";
 
-const movieSchema = z.object({
+const movieCreateSchema = z.object({
   name: z.string().max(50),
-  description: z.string(),
+  description: z.string().nullable().optional(),
   duration: z.number(),
   price: z.number(),
 });
 
-const returnMovieSchema = movieSchema.extend({
+const returnMovieSchema = movieCreateSchema.extend({
   id: z.number(),
 });
 
-export { movieSchema, returnMovieSchema };
+const movieSchemaArray = returnMovieSchema.array()
+
+const updateMovieSchema = movieCreateSchema.partial()
+
+export { movieCreateSchema, returnMovieSchema, movieSchemaArray, updateMovieSchema };

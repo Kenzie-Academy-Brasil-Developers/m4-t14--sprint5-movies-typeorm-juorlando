@@ -1,4 +1,4 @@
-import * as express from "express";
+import * as express from "express"
 
 declare global {
   namespace Express {
@@ -6,7 +6,7 @@ declare global {
       validatedMovie: {
         id: number;
         name: string;
-        description: string;
+        description: string | null;
         duration: number;
         price: number;
       };

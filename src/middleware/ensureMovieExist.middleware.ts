@@ -4,7 +4,7 @@ import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
 import { appError } from "../errors";
 
-const ensureName = async (
+const ensureMovieExistsMiddleware = async (
   request: Request,
   response: Response,
   next: NextFunction
@@ -13,15 +13,15 @@ const ensureName = async (
 
   const findMovie = await userRepository.findOne({
     where: {
-      name: request.body.name,
+      id: parseInt(request.params.id),
     },
   });
 
-  if (findMovie) {
-    throw new appError("Movie already exists", 409);
+  if (!findMovie) {
+    throw new appError("Movie not found", 404);
   }
 
   return next();
 };
 
-export { ensureName };
+export { ensureMovieExistsMiddleware };
