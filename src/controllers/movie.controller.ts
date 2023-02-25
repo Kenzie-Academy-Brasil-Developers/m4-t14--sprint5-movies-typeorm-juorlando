@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { iMovie, iMovieUpdate } from "../interface/movie.interface";
+import { iMovie, iMovieUpdate } from "../interface/movies.interface";
 import { createMovieService } from "../service/createMovie.service";
 import { listMovieService } from "../service/listMovie.service";
 import { deleteMovieService } from "../service/deleteMovie.service";

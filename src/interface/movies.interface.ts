@@ -5,7 +5,7 @@ import {
   movieCreateSchema,
   movieSchemaArray,
   returnMovieSchema,
-  updateMovieSchema
+  updateMovieSchema,
 } from "../schemas/movies.schema";
 
 type iMovieCreate = z.infer<typeof movieCreateSchema>;
@@ -15,7 +15,7 @@ type iMovieRepo = Repository<Movie>;
 type iMovie = z.infer<typeof movieCreateSchema>;
 type iMovieReturn = z.infer<typeof returnMovieSchema>;
 type iMoviesReturn = z.infer<typeof movieSchemaArray>;
-type iUpdateMovie = z.infer<typeof updateMovieSchema>
+type iUpdateMovie = z.infer<typeof updateMovieSchema>;
 
 export {
   iMovie,
@@ -24,5 +24,5 @@ export {
   iMovieRepo,
   iMovieReturn,
   iMoviesReturn,
-  iUpdateMovie
+  iUpdateMovie,
 };

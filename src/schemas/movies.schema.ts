@@ -11,8 +11,13 @@ const returnMovieSchema = movieCreateSchema.extend({
   id: z.number(),
 });
 
-const movieSchemaArray = returnMovieSchema.array()
+const movieSchemaArray = returnMovieSchema.array();
 
-const updateMovieSchema = movieCreateSchema.partial()
+const updateMovieSchema = movieCreateSchema.partial();
 
-export { movieCreateSchema, returnMovieSchema, movieSchemaArray, updateMovieSchema };
+export {
+  movieCreateSchema,
+  returnMovieSchema,
+  movieSchemaArray,
+  updateMovieSchema,
+};
