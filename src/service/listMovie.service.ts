@@ -12,10 +12,20 @@ const listMovieService = async (payload: any): Promise<iPagination> => {
 
   const page: number = Number(payload.page) || 1;
   const perPage: number = Number(payload.perPage) || 5;
+  let sort: string = payload.sort
+  let order: string = payload.order
+
+  if(!payload.sort){
+    sort = "id"
+  }
+
+  if(!payload.order){
+    order = "ASC"
+  }
 
   const [movie, total] = await movieRepository.findAndCount({
     order: {
-      id: "ASC",
+      [sort]: order,
     },
     take: perPage,
     skip: perPage * (page - 1),
