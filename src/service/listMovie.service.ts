@@ -1,10 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
-import {
-  iMoviesReturn,
-  iPagination
-} from "../interfaces/movies.interface";
+import { iMoviesReturn, iPagination } from "../interfaces/movies.interface";
 import { movieSchemaArray } from "../schemas/movies.schema";
 
 const listMovieService = async (payload: any): Promise<iPagination> => {
@@ -12,19 +9,23 @@ const listMovieService = async (payload: any): Promise<iPagination> => {
 
   let page: number = Number(payload.page) || 1;
   let perPage: number = Number(payload.perPage) || 5;
-  let sort: string = payload.sort
-  let order: string = payload.order
+  let sort: string = payload.sort;
+  let order: string = payload.order;
 
-  if(perPage <= 0){
-    perPage = 5
+  if (perPage <= 0) {
+    perPage = 5;
   }
 
-  if(payload.sort !== "price" && payload.sort !== "duration"){
-    sort = "id"
+  if (payload.sort !== "price" && payload.sort !== "duration") {
+    sort = "id";
   }
 
-  if(payload.order !== "ASC" && payload.order !== "DESC"){
-    order = "ASC"
+  if (!payload.sort && payload.order === "DESC") {
+    order = "ASC";
+  }
+
+  if (payload.order !== "ASC" && payload.order !== "DESC") {
+    order = "ASC";
   }
 
   const [movie, total] = await movieRepository.findAndCount({
