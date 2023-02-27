@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
-import { iMovieUpdate } from "../interfaces";
+import { iMovieUpdate, iMovie } from "../interfaces";
 import { MovieUpdate } from "../interfaces/movies.interface";
 import { returnMovieSchema } from "../schemas/movies.schema";
 
@@ -11,7 +11,7 @@ const updateMovieService = async (
 ): Promise<MovieUpdate> => {
   const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie);
 
-  const oldData: iMovieUpdate | null = await movieRepository.findOneBy({
+  const oldData: iMovieUpdate| null = await movieRepository.findOneBy({
     id: movieId,
   });
 
@@ -19,6 +19,7 @@ const updateMovieService = async (
     ...oldData,
     ...movieData,
   });
+
 
   await movieRepository.save(movie);
 

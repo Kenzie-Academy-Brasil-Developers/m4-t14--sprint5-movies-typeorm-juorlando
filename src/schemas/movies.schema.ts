@@ -20,9 +20,14 @@ const movieUpdateSchema = z.object({
   price: z.number().int().positive().optional(),
 });
 
+const returnMovieUpdateSchema = movieUpdateSchema.extend({
+  id: z.number().optional(),
+});
+
 export {
   movieCreateSchema,
   returnMovieSchema,
   movieSchemaArray,
-  movieUpdateSchema
+  movieUpdateSchema,
+  returnMovieUpdateSchema,
 };

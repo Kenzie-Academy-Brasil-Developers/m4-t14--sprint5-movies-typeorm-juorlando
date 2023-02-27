@@ -3,6 +3,7 @@ import {
   returnMovieSchema,
   movieSchemaArray,
   movieUpdateSchema,
+  returnMovieUpdateSchema
 } from "./movies.schema";
 
 export {
@@ -10,4 +11,5 @@ export {
   returnMovieSchema,
   movieSchemaArray,
   movieUpdateSchema,
+  returnMovieUpdateSchema
 };

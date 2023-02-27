@@ -5,14 +5,14 @@ import {
   movieCreateSchema,
   movieSchemaArray,
   returnMovieSchema,
-  movieUpdateSchema
+  returnMovieUpdateSchema
 } from "../schemas";
 
 
 type iMovie = z.infer<typeof movieCreateSchema>;
 type iMovieReturn = z.infer<typeof returnMovieSchema>;
 type iMoviesReturn = z.infer<typeof movieSchemaArray>;
-type MovieUpdate = z.infer<typeof movieUpdateSchema>
+type MovieUpdate = z.infer<typeof returnMovieUpdateSchema>
 
 type iMovieCreate = z.infer<typeof movieCreateSchema>;
 type iMovieUpdate = DeepPartial<iMovie>;
