@@ -15,9 +15,6 @@ const listMovieService = async (payload: any): Promise<iPagination> => {
   let sort: string = payload.sort
   let order: string = payload.order
 
-  console.log(18, sort)
-  console.log(19, order)
-
   if(payload.sort !== "price" && payload.sort !== "duration"){
     sort = "id"
   }
@@ -25,9 +22,6 @@ const listMovieService = async (payload: any): Promise<iPagination> => {
   if(payload.order !== "ASC" && payload.order !== "DESC"){
     order = "ASC"
   }
-
-  console.log(29, sort)
-  console.log(30, order)
 
   const [movie, total] = await movieRepository.findAndCount({
     order: {
