@@ -19,8 +19,6 @@ const ensureName = async (
     id: parseInt(request.params.id),
   });
 
-  console.log(22, findMovieName);
-  console.log(23, findMovie?.name);
   const nameExist = findMovieName?.name === request.body.name;
 
   if (nameExist === true && findMovieName?.id !== findMovie?.id) {
