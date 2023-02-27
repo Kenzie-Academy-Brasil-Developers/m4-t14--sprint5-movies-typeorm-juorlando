@@ -10,10 +10,14 @@ import { movieSchemaArray } from "../schemas/movies.schema";
 const listMovieService = async (payload: any): Promise<iPagination> => {
   const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie);
 
-  const page: number = Number(payload.page) || 1;
-  const perPage: number = Number(payload.perPage) || 5;
+  let page: number = Number(payload.page) || 1;
+  let perPage: number = Number(payload.perPage) || 5;
   let sort: string = payload.sort
   let order: string = payload.order
+
+  if(perPage <= 0){
+    perPage = 5
+  }
 
   if(payload.sort !== "price" && payload.sort !== "duration"){
     sort = "id"
