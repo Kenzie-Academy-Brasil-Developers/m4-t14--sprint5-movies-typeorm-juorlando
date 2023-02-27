@@ -15,11 +15,11 @@ const listMovieService = async (payload: any): Promise<iPagination> => {
   let sort: string = payload.sort
   let order: string = payload.order
 
-  if(!payload.sort){
+  if(payload.sort !== "price" || payload.sort !== "duration"){
     sort = "id"
   }
 
-  if(!payload.order){
+  if(payload.order !== "ASC" || payload.order !== "DESC"){
     order = "ASC"
   }
 
