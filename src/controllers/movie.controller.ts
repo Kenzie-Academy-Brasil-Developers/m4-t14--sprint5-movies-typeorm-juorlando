@@ -23,6 +23,7 @@ const listMovieController = async (request: Request, response: Response) => {
 const updateMovieController = async (request: Request, response: Response) => {
   const movieData: iMovieUpdate = request.body;
   const movieId = parseInt(request.params.id);
+  console.log(26, movieId)
 
   const updatedMovie = await updateMovieService(movieData, movieId);
 

@@ -7,6 +7,7 @@ import {
 } from "../controllers/movie.controller";
 import { ensureValidateData } from "../middleware/ensureDataIsValid";
 import { ensureName } from "../middleware/ensureMovieNameNotExist";
+import { ensureNameCreate } from "../middleware/ensureMovieNameNotExistCreate";
 import { movieCreateSchema, movieUpdateSchema } from "../schemas/movies.schema";
 import { ensureMovieExistsMiddleware } from "../middleware/ensureMovieExist.middleware";
 
@@ -15,7 +16,7 @@ const movieRoutes: Router = Router();
 movieRoutes.post(
   "",
   ensureValidateData(movieCreateSchema),
-  ensureName,
+  ensureNameCreate,
   createMovieContoller
 );
 
@@ -30,6 +31,5 @@ movieRoutes.patch(
   ensureName,
   updateMovieController
 );
-
 
 export { movieRoutes };
