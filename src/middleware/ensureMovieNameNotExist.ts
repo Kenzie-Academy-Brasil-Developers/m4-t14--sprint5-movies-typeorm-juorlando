@@ -13,21 +13,19 @@ const ensureName = async (
 
   const findMovieName = await movieRepository.findOneBy({
     name: request.body.name,
-});
-
-  const findMovie = await movieRepository.findOneBy({
-      id: parseInt(request.params.id),
   });
 
-  if (findMovieName) {    
-    
-      if(findMovie?.id !== parseInt(request.params.id)){
-        
-        throw new appError("Movie already exists.", 409);
-      }
+  const findMovie = await movieRepository.findOneBy({
+    id: parseInt(request.params.id),
+  });
 
+  console.log(22, findMovieName);
+  console.log(23, findMovie?.name);
+  const nameExist = findMovieName?.name === request.body.name;
+
+  if (nameExist === true && findMovieName?.id !== findMovie?.id) {
+    throw new appError("Movie already exists.", 409);
   }
-
 
   return next();
 };
