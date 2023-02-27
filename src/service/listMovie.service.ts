@@ -16,6 +16,10 @@ const listMovieService = async (payload: any): Promise<iPagination> => {
     perPage = 5;
   }
 
+  if (perPage > 5) {
+    perPage = 5;
+  }
+
   if (payload.sort !== "price" && payload.sort !== "duration") {
     sort = "id";
   }
