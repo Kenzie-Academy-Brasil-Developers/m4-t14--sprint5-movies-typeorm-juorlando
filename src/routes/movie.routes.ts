@@ -7,7 +7,7 @@ import {
 } from "../controllers/movie.controller";
 import { ensureValidateData } from "../middleware/ensureDataIsValid";
 import { ensureName } from "../middleware/ensureMovieNameNotExist";
-import { movieCreateSchema, updateMovieSchema } from "../schemas/movies.schema";
+import { movieCreateSchema, movieUpdateSchema } from "../schemas/movies.schema";
 import { ensureMovieExistsMiddleware } from "../middleware/ensureMovieExist.middleware";
 
 const movieRoutes: Router = Router();
@@ -21,14 +21,15 @@ movieRoutes.post(
 
 movieRoutes.get("", listMovieController);
 
+movieRoutes.delete("/:id", ensureMovieExistsMiddleware, deleteMovieController);
+
 movieRoutes.patch(
   "/:id",
-  ensureValidateData(updateMovieSchema),
+  ensureValidateData(movieUpdateSchema),
   ensureMovieExistsMiddleware,
   ensureName,
   updateMovieController
 );
 
-movieRoutes.delete("/:id", ensureMovieExistsMiddleware, deleteMovieController);
 
 export { movieRoutes };

@@ -13,11 +13,16 @@ const returnMovieSchema = movieCreateSchema.extend({
 
 const movieSchemaArray = returnMovieSchema.array();
 
-const updateMovieSchema = movieCreateSchema.partial();
+const movieUpdateSchema = z.object({
+  name: z.string().max(50).optional(),
+  description: z.string().nullable().optional(),
+  duration: z.number().int().positive().optional(),
+  price: z.number().int().positive().optional(),
+});
 
 export {
   movieCreateSchema,
   returnMovieSchema,
   movieSchemaArray,
-  updateMovieSchema,
+  movieUpdateSchema
 };

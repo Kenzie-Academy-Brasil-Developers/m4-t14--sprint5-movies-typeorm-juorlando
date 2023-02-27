@@ -1,28 +1,30 @@
-import { Repository } from "typeorm"
-import { AppDataSource } from "../data-source"
-import { Movie } from "../entities"
-import {iUpdateMovie, iMovieUpdate} from "../interfaces"
-import { returnMovieSchema } from "../schemas/movies.schema"
+import { Repository } from "typeorm";
+import { AppDataSource } from "../data-source";
+import { Movie } from "../entities";
+import { iMovieUpdate } from "../interfaces";
+import { MovieUpdate } from "../interfaces/movies.interface";
+import { returnMovieSchema } from "../schemas/movies.schema";
 
-const updateMovieService =async (movieData: iMovieUpdate, movieId: number): Promise<iUpdateMovie | void> => {
+const updateMovieService = async (
+  movieData: iMovieUpdate,
+  movieId: number
+): Promise<MovieUpdate> => {
+  const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie);
 
-    const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie)
+  const oldData: iMovieUpdate | null = await movieRepository.findOneBy({
+    id: movieId,
+  });
 
+  const movie = movieRepository.create({
+    ...oldData,
+    ...movieData,
+  });
 
-    const oldData = await movieRepository.findOneBy({
-        id: movieId
-    })
+  await movieRepository.save(movie);
 
-    const movie = movieRepository.create({
-        ...oldData,
-        ...movieData
-    })
+  const newMovie: MovieUpdate = returnMovieSchema.parse(movie);
 
-    await movieRepository.save(movie)
+  return newMovie;
+};
 
-    const newMovie = returnMovieSchema.parse(movie)
-
-    return newMovie
-}
-
-export {updateMovieService}
+export { updateMovieService };

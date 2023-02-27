@@ -5,17 +5,26 @@ import {
   movieCreateSchema,
   movieSchemaArray,
   returnMovieSchema,
-  updateMovieSchema,
+  movieUpdateSchema
 } from "../schemas";
 
-type iMovieCreate = z.infer<typeof movieCreateSchema>;
-type iMovieUpdate = DeepPartial<Movie>;
-type iMovieRepo = Repository<Movie>;
 
 type iMovie = z.infer<typeof movieCreateSchema>;
 type iMovieReturn = z.infer<typeof returnMovieSchema>;
 type iMoviesReturn = z.infer<typeof movieSchemaArray>;
-type iUpdateMovie = z.infer<typeof updateMovieSchema>;
+type MovieUpdate = z.infer<typeof movieUpdateSchema>
+
+type iMovieCreate = z.infer<typeof movieCreateSchema>;
+type iMovieUpdate = DeepPartial<iMovie>;
+type iMovieRepo = Repository<Movie>;
+
+
+interface Pagination {
+  prevPage: string | null;
+  nextPage: string | null;
+  count: number;
+  data: iMoviesReturn;
+}
 
 export {
   iMovie,
@@ -24,5 +33,6 @@ export {
   iMovieRepo,
   iMovieReturn,
   iMoviesReturn,
-  iUpdateMovie,
+  Pagination,
+  MovieUpdate
 };

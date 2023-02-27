@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { iMovie, iMovieUpdate } from "../interfaces/movies.interface";
+import { iMovie, iMovieUpdate, MovieUpdate } from "../interfaces/movies.interface";
 import { createMovieService } from "../service/createMovie.service";
 import { listMovieService } from "../service/listMovie.service";
 import { deleteMovieService } from "../service/deleteMovie.service";
@@ -14,7 +14,8 @@ const createMovieContoller = async (request: Request, response: Response) => {
 };
 
 const listMovieController = async (request: Request, response: Response) => {
-  const movies = await listMovieService();
+
+  const movies = await listMovieService(request.query);
 
   return response.status(200).json(movies);
 };

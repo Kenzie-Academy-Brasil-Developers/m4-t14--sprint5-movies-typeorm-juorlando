@@ -1,15 +1,8 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("movies")
 class Movie {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn("increment")
   id: number;
 
   @Column({ length: 50, unique: true })
@@ -23,15 +16,6 @@ class Movie {
 
   @Column()
   price: number;
-
-  @CreateDateColumn()
-  createAt: string;
-
-  @UpdateDateColumn()
-  updateAt: string;
-
-  @DeleteDateColumn()
-  deleteAt: string;
 }
 
 export { Movie };

@@ -2,12 +2,12 @@ import {
   movieCreateSchema,
   returnMovieSchema,
   movieSchemaArray,
-  updateMovieSchema,
+  movieUpdateSchema,
 } from "./movies.schema";
 
 export {
   movieCreateSchema,
   returnMovieSchema,
   movieSchemaArray,
-  updateMovieSchema,
+  movieUpdateSchema,
 };
