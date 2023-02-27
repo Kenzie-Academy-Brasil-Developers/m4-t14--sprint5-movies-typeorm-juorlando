@@ -5,7 +5,8 @@ import {
   iMovie,
   iMovieReturn,
   iMoviesReturn,
-  iUpdateMovie,
+  MovieUpdate,
+  iPagination
 } from "./movies.interface";
 
 export {
@@ -15,5 +16,6 @@ export {
   iMovie,
   iMovieReturn,
   iMoviesReturn,
-  iUpdateMovie,
+  MovieUpdate,
+  iPagination
 };

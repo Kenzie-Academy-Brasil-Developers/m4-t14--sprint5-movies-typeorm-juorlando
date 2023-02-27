@@ -23,6 +23,9 @@ interface Pagination {
   prevPage: string | null;
   nextPage: string | null;
   count: number;
+}
+
+interface iPagination extends Pagination {
   data: iMoviesReturn;
 }
 
@@ -34,5 +37,6 @@ export {
   iMovieReturn,
   iMoviesReturn,
   Pagination,
+  iPagination,
   MovieUpdate
 };

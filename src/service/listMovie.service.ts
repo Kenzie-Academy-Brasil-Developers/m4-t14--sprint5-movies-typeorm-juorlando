@@ -1,14 +1,13 @@
-import { Like, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
 import {
-  iMovie,
   iMoviesReturn,
-  Pagination,
+  iPagination
 } from "../interfaces/movies.interface";
 import { movieSchemaArray } from "../schemas/movies.schema";
 
-const listMovieService = async (payload: any) => {
+const listMovieService = async (payload: any): Promise<iPagination> => {
   const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie);
 
   const page: number = Number(payload.page) || 1;
@@ -44,7 +43,7 @@ const listMovieService = async (payload: any) => {
     ? (prevPage = null)
     : (prevPage = `${baseUrl}?page=${page - 1}&perPage=${perPage}`);
 
-  const pagenation: Pagination = {
+  const pagenation: iPagination = {
     prevPage,
     nextPage,
     count: total,
